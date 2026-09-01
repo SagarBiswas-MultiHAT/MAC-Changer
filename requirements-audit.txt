@@ -1,0 +1,3 @@
+# Runtime dependencies to audit.
+# Keep this file minimal and deterministic for CI security checks.
+
