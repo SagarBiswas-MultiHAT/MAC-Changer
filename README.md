@@ -1,22 +1,23 @@
-# macchanger-pro
+# MAC-Changer_Pro
 
 Linux MAC address management with safe backup/restore, strict validation, and automation-ready CLI behavior.
 
 <div align="right">
 
-[![CI](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-MAX/actions/workflows/ci.yml/badge.svg)](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-MAX/actions/workflows/ci.yml)
-&nbsp;
+[![CI](https://github.com/SagarBiswas-MultiHAT/MAC-Changer_Pro/actions/workflows/ci.yml/badge.svg)](https://github.com/SagarBiswas-MultiHAT/MAC-Changer_Pro/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/badge/pypi-v2.0.0-blue.svg)](https://pypi.org/project/MAC-Changer_Pro/)
+[![Python versions](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-&nbsp;
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
-&nbsp;
-[![Version](https://img.shields.io/badge/version-1.0.0-black.svg)](CHANGELOG.md)
+[![Coverage](https://img.shields.io/badge/coverage-93%25-brightgreen.svg)](tests/)
+[![Code Style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Type Checked: mypy](https://img.shields.io/badge/type_checked-mypy_strict-blue.svg)](https://mypy-lang.org/)
+[![Security: pip-audit](https://img.shields.io/badge/security-pip--audit%20clean-success.svg)](SECURITY.md)
 
 </div>
 
 ## Overview
 
-`macchanger-pro` is a production-focused CLI utility for working with Linux interface MAC addresses safely.  
+`MAC-Changer_Pro` is a production-focused CLI utility for working with Linux interface MAC addresses safely.  
 It lets you inspect, set, randomize, and restore MAC addresses while preserving original values in a protected backup directory.
 
 This project is for engineers, students, and security practitioners who need predictable networking behavior in labs or authorized administration workflows.  
@@ -26,44 +27,44 @@ The CLI is designed for both interactive use and script automation, with clear e
 
 ```
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro --list
+└─# MAC-Changer_Pro --list
 Interfaces and MACs:
   eth0: 00:15:5d:45:60:8f
 
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro -i eth0 --show
+└─# MAC-Changer_Pro -i eth0 --show
 eth0 current MAC: 00:15:5d:45:60:8f
 
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro -i eth0 --set aa:bb:cc:dd:ee:ff
+└─# MAC-Changer_Pro -i eth0 --set aa:bb:cc:dd:ee:ff
 Apply MAC aa:bb:cc:dd:ee:ff to interface eth0? [y/N]: Y
 2026-02-24 23:01:12,739 [INFO] Setting MAC for eth0 -> aa:bb:cc:dd:ee:ff
 MAC successfully changed for eth0. New MAC: aa:bb:cc:dd:ee:ff
 2026-02-24 23:01:12,860 [INFO] Operation completed.
 
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro -i eth0 --show
+└─# MAC-Changer_Pro -i eth0 --show
 eth0 current MAC: aa:bb:cc:dd:ee:ff
 
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro -i eth0 --random
+└─# MAC-Changer_Pro -i eth0 --random
 Apply MAC 56:7a:46:19:fc:bc to interface eth0? [y/N]: Y
 2026-02-24 23:01:29,282 [INFO] Setting MAC for eth0 -> 56:7a:46:19:fc:bc
 MAC successfully changed for eth0. New MAC: 56:7a:46:19:fc:bc
 2026-02-24 23:01:29,314 [INFO] Operation completed.
 
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro -i eth0 --show
+└─# MAC-Changer_Pro -i eth0 --show
 eth0 current MAC: 56:7a:46:19:fc:bc
 
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro -i eth0 --restore
+└─# MAC-Changer_Pro -i eth0 --restore
 Restore original MAC for eth0? [y/N]: y
 2026-02-24 23:01:41,304 [INFO] Restoring MAC for eth0 -> 00:15:5d:45:60:8f
 Restored original MAC for eth0. Current: 00:15:5d:45:60:8f
 
 ┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
-└─# macchanger-pro -i eth0 --show
+└─# MAC-Changer_Pro -i eth0 --show
 eth0 current MAC: 00:15:5d:45:60:8f
 ```
 
@@ -77,7 +78,7 @@ eth0 current MAC: 00:15:5d:45:60:8f
 - Safe restore flow from stored backup
 - `iproute2` first, `ifconfig` fallback for legacy environments
 - Stable, explicit exit codes for platform, privilege, validation, and operation errors
-- Console script (`macchanger-pro`) plus compatibility wrapper (`macchanger_pro.py`)
+- Console script (`MAC-Changer_Pro`) plus compatibility wrapper (`macchanger_pro.py`)
 
 ## Demo / Screenshots
 
@@ -106,7 +107,7 @@ python -m pip install -e ".[dev]"
 ### Run the Project
 
 ```bash
-macchanger-pro --help
+MAC-Changer_Pro --help
 ```
 
 You should see usage text with flags such as `--set`, `--random`, `--restore`, `--list`, and `--show`.
@@ -116,7 +117,7 @@ You should see usage text with flags such as `--set`, `--random`, `--restore`, `
 ### 1) List available interfaces
 
 ```bash
-macchanger-pro --list
+MAC-Changer_Pro --list
 ```
 
 Prints non-loopback interfaces and their current MAC addresses.
@@ -124,7 +125,7 @@ Prints non-loopback interfaces and their current MAC addresses.
 ### 2) Show MAC for one interface
 
 ```bash
-macchanger-pro -i eth0 --show
+MAC-Changer_Pro -i eth0 --show
 ```
 
 Shows the current MAC without modifying the interface.
@@ -132,7 +133,7 @@ Shows the current MAC without modifying the interface.
 ### 3) Set an explicit MAC
 
 ```bash
-macchanger-pro -i eth0 --set aa:bb:cc:dd:ee:ff
+MAC-Changer_Pro -i eth0 --set aa:bb:cc:dd:ee:ff
 ```
 
 Validates format, writes a one-time backup of the original MAC, then applies the new address.
@@ -140,7 +141,7 @@ Validates format, writes a one-time backup of the original MAC, then applies the
 ### 4) Apply a random standards-correct MAC
 
 ```bash
-macchanger-pro -i eth0 --random
+MAC-Changer_Pro -i eth0 --random
 ```
 
 Generates and applies a locally administered unicast MAC suitable for privacy/lab workflows.
@@ -148,7 +149,7 @@ Generates and applies a locally administered unicast MAC suitable for privacy/la
 ### 5) Restore the original hardware MAC
 
 ```bash
-macchanger-pro -i eth0 --restore
+MAC-Changer_Pro -i eth0 --restore
 ```
 
 Loads the saved backup and re-applies it.
@@ -161,7 +162,7 @@ python macchanger_pro.py --help
 
 The top-level script remains available for existing workflows.
 
-### 7) If `sudo macchanger-pro` says "command not found"
+### 7) If `sudo MAC-Changer_Pro` says "command not found"
 
 Some Linux environments reset `PATH` under `sudo`, so virtualenv-installed commands are not visible.
 
@@ -169,10 +170,10 @@ Use one of these options:
 
 ```bash
 # Option A: run as root shell (no sudo prefix needed)
-macchanger-pro -i eth0 --random
+MAC-Changer_Pro -i eth0 --random
 
 # Option B: sudo with absolute command path
-sudo "$(command -v macchanger-pro)" -i eth0 --random
+sudo "$(command -v MAC-Changer_Pro)" -i eth0 --random
 
 # Option C: compatibility wrapper
 sudo python macchanger_pro.py -i eth0 --random
